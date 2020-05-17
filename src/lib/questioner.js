@@ -16,7 +16,6 @@ export const Questioner = (props) => {
     pickNextQuestion,
     customReducer,
     createQuestions,
-    WithComponent,
   } = props;
   const [interviewState, dispatch] = useReducer(
     customReducer || defaultReducer,
@@ -24,5 +23,5 @@ export const Questioner = (props) => {
     createQuestions || defaultCreateQuestions
   );
 
-  return <div>{pickNextQuestion(interviewState, dispatch)}</div>;
+  return <>{pickNextQuestion(interviewState, dispatch)}</>;
 };
