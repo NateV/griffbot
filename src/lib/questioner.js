@@ -25,3 +25,6 @@ export const Questioner = (props) => {
 
   return <>{pickNextQuestion(interviewState, dispatch)}</>;
 };
+
+// A Redux-connected version of this
+// would only need the relevant slice of state and the dispatch function.
