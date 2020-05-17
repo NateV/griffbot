@@ -47,4 +47,4 @@ const pickQuestion = (currentInterviewState, dispatch) => {
 }
 ```
 
-This particular `pickQuestion` function defines a guided interview that asks the two questions one after the other. But you can write `pickQuestion` to perform any kind of branching behavior.
+This particular `pickQuestion` function defines a guided interview that asks the two questions one after the other, and then redirects the user to different results, depending on the final state of the interview. But you can write `pickQuestion` to perform any kind of branching behavior.
