@@ -1,17 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Questioner } from "./lib";
+import { ButtonOptionsField } from "./lib/questionTypes";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const initialState = { isThisGreatOrWhat: { answer: null } };
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const GreatOrWhat = (props) => {
+  return (
+    <div>
+      <h2>Is this great or what?</h2>
+      <ButtonOptionsField {...props} labelText="So?">
+        <button value="great">Great!</button>
+        <button value="what">What...</button>
+      </ButtonOptionsField>
+    </div>
+  );
+};
+
+const pickNextQuestion = (interviewState, dispatch) => {
+  console.log("picking component");
+  switch (interviewState.isThisGreatOrWhat.answer) {
+    case "great":
+      return <div> I agree. </div>;
+    case "what":
+      return <div> Aww. Darn. </div>;
+    default:
+      console.log("picked GreatOrWhat");
+      return <GreatOrWhat questionId="isThisGreatOrWhat" dispatch={dispatch} />;
+  }
+};
+const App = () => {
+  return (
+    <div>
+      <h1> Griffbot </h1>
+      <h2>A lightweight library for asking lots of questions</h2>
+      <div></div>
+      <Questioner
+        initialState={initialState}
+        pickNextQuestion={pickNextQuestion}
+      ></Questioner>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
